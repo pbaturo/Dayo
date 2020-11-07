@@ -6,3 +6,8 @@
 /.vs
 /tests/Dayo.Tests/bin/Debug/netcoreapp3.1
 /tests/Dayo.Tests/obj
+/build
+/src/Dayo/bin
+/src/Dayo.Package/Dayo.Package/bin
+/src/Dayo.Package/Dayo.Package/obj
+/tests/Dayo.Tests/bin/Release/netcoreapp3.1
