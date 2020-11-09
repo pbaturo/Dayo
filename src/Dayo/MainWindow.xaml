@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Dayo"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Dayo" Height="355" Width="280" Topmost="True" WindowStyle="None" ResizeMode="NoResize" Top="0" Left="1640">
     <Grid>
-
+        <TextBox FontSize="24" AcceptsReturn="True" TextWrapping="Wrap"></TextBox>
     </Grid>
 </Window>
