@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="Dayo" Height="355" Width="280" Topmost="True" WindowStyle="None" ResizeMode="NoResize" Top="0" Left="1640" FontFamily="Global Sans Serif">
     <Grid>
-        <Button Content="x" Height="25" Width="25" VerticalAlignment="Top" HorizontalAlignment="Right" Click="Button_Click"/>
-        <TextBox Margin="0, 25, 0, 0" FontSize="24" AcceptsReturn="True" TextWrapping="Wrap"></TextBox>
+        <Button x:Name="AddCheckbox" Content="&#x2610;" Width="24" HorizontalAlignment="Center" Margin="0,0,0,330" Click="AddCheckbox_Click" />
+        <Button x:Name="Close" Content="x" Height="25" Width="25" VerticalAlignment="Top" HorizontalAlignment="Right" Click="Button_Click"/>
+        <TextBox x:Name="MemoryList" Margin="0, 25, 0, 0" FontSize="24" AcceptsReturn="True" TextWrapping="Wrap" PreviewMouseRightButtonDown="MemoryList_MouseDown"></TextBox>
     </Grid>
 </Window>

@@ -29,5 +29,45 @@ namespace Dayo
         {
             this.Close();
         }
+
+        private void AddCheckbox_Click(object sender, RoutedEventArgs e)
+        {
+            MemoryList.Text = MemoryList.Text.Insert(MemoryList.CaretIndex, "\u2610");
+            MemoryList.Focus();
+        }
+
+        //private void MemoryList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        //{
+        //    if (MemoryList.Text == "")
+        //    {
+        //        return;
+        //    }
+        //    char curentChar = MemoryList.Text[MemoryList.CaretIndex];
+        //    if (curentChar == '\u2610')
+        //    {
+        //        MemoryList.Text = MemoryList.Text.Substring(0, MemoryList.CaretIndex) +  "\u2611" + MemoryList.Text.Substring(MemoryList.CaretIndex+1);
+        //    } 
+        //    else if (curentChar == '\u2611')
+        //    {
+        //        MemoryList.Text = MemoryList.Text.Substring(0, MemoryList.CaretIndex) + "\u2610" + MemoryList.Text.Substring(MemoryList.CaretIndex + 1);
+        //    }
+        //}
+
+        private void MemoryList_MouseDown(object sender, MouseButtonEventArgs e)
+        {  
+            if (MemoryList.Text == "")
+            {
+                return;
+            }
+            char curentChar = MemoryList.CaretIndex == MemoryList.Text.Length ? (char)0 : MemoryList.Text[MemoryList.CaretIndex];
+            if (curentChar == '\u2610')
+            {
+                MemoryList.Text = MemoryList.Text.Substring(0, MemoryList.CaretIndex) + "\u2611" + MemoryList.Text.Substring(MemoryList.CaretIndex + 1);
+            }
+            else if (curentChar == '\u2611')
+            {
+                MemoryList.Text = MemoryList.Text.Substring(0, MemoryList.CaretIndex) + "\u2610" + MemoryList.Text.Substring(MemoryList.CaretIndex + 1);
+            }
+        }
     }
 }
