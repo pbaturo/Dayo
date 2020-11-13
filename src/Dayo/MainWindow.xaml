@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="Dayo" Height="355" Width="280" Topmost="True" WindowStyle="None" ResizeMode="NoResize" Top="0" Left="1640" FontFamily="Global Sans Serif">
     <Grid>
+        <Rectangle x:Name="DraggableRectangle" Height="25" VerticalAlignment="Top" PreviewMouseDown="DraggableRectangle_MouseDown" Fill="White"></Rectangle>
         <Button x:Name="AddCheckbox" Content="&#x2610;" Width="24" HorizontalAlignment="Left" Margin="0,0,0,330" Click="AddCheckbox_Click" />
         <TextBox x:Name="Title" Height="25" Width="150" VerticalAlignment="Top" FontSize="25"></TextBox>
         <Button x:Name="Close" Content="x" Height="25" Width="25" VerticalAlignment="Top" HorizontalAlignment="Right" Click="Button_Click"/>

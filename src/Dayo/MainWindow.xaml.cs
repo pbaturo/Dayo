@@ -69,5 +69,10 @@ namespace Dayo
                 MemoryList.Text = MemoryList.Text.Substring(0, MemoryList.CaretIndex) + "\u2610" + MemoryList.Text.Substring(MemoryList.CaretIndex + 1);
             }
         }
+
+        private void DraggableRectangle_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
     }
 }
