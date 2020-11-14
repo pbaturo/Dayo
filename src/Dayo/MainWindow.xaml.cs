@@ -15,18 +15,51 @@ using System.Windows.Shapes;
 
 namespace Dayo
 {
+
+ 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
+        System.Windows.Threading.DispatcherTimer dispatcherTimer;
+
+        private const string StorageName = "DayoStore.txt";
+
+
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            StoreMemoryList();
+        }
+
+        private void StoreMemoryList()
+        {
+            System.IO.File.WriteAllText(StorageName, MemoryList.Text);
+        }
+
         public MainWindow()
         {
             InitializeComponent();
+            ReadMemoryList();
+
+            dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+            dispatcherTimer.Tick += dispatcherTimer_Tick;
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 30);
+            dispatcherTimer.Start();
+        }
+
+        private void ReadMemoryList()
+        {
+            if (System.IO.File.Exists(StorageName))
+            {
+                MemoryList.Text = System.IO.File.ReadAllText(StorageName);
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            StoreMemoryList();
+
             this.Close();
         }
 
