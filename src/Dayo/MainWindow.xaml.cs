@@ -22,6 +22,7 @@ namespace Dayo
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly MainWindowViewModel viewModel;
         System.Windows.Threading.DispatcherTimer dispatcherTimer;
 
         private const string StorageName = "DayoStore.txt";
@@ -34,12 +35,14 @@ namespace Dayo
 
         private void StoreMemoryList()
         {
-            System.IO.File.WriteAllText(StorageName, MemoryList.Text);
+            System.IO.File.WriteAllText(StorageName, viewModel.Content);
         }
 
         public MainWindow()
         {
             InitializeComponent();
+            viewModel = new MainWindowViewModel();
+            DataContext = viewModel;
             ReadMemoryList();
 
             dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
@@ -52,7 +55,7 @@ namespace Dayo
         {
             if (System.IO.File.Exists(StorageName))
             {
-                MemoryList.Text = System.IO.File.ReadAllText(StorageName);
+                viewModel.Content = System.IO.File.ReadAllText(StorageName);
             }
         }
 
@@ -65,41 +68,41 @@ namespace Dayo
 
         private void AddCheckbox_Click(object sender, RoutedEventArgs e)
         {
-            MemoryList.Text = MemoryList.Text.Insert(MemoryList.CaretIndex, "\u2610");
+            viewModel.Content = viewModel.Content.Insert(MemoryList.CaretIndex, "\u2610");
             MemoryList.Focus();
         }
 
         //private void MemoryList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         //{
-        //    if (MemoryList.Text == "")
+        //    if (viewModel.Content == "")
         //    {
         //        return;
         //    }
-        //    char curentChar = MemoryList.Text[MemoryList.CaretIndex];
+        //    char curentChar = viewModel.Content[MemoryList.CaretIndex];
         //    if (curentChar == '\u2610')
         //    {
-        //        MemoryList.Text = MemoryList.Text.Substring(0, MemoryList.CaretIndex) +  "\u2611" + MemoryList.Text.Substring(MemoryList.CaretIndex+1);
+        //        viewModel.Content = viewModel.Content.Substring(0, MemoryList.CaretIndex) +  "\u2611" + viewModel.Content.Substring(MemoryList.CaretIndex+1);
         //    } 
         //    else if (curentChar == '\u2611')
         //    {
-        //        MemoryList.Text = MemoryList.Text.Substring(0, MemoryList.CaretIndex) + "\u2610" + MemoryList.Text.Substring(MemoryList.CaretIndex + 1);
+        //        viewModel.Content = viewModel.Content.Substring(0, MemoryList.CaretIndex) + "\u2610" + viewModel.Content.Substring(MemoryList.CaretIndex + 1);
         //    }
         //}
 
         private void MemoryList_MouseDown(object sender, MouseButtonEventArgs e)
         {  
-            if (MemoryList.Text == "")
+            if (viewModel.Content == "")
             {
                 return;
             }
-            char curentChar = MemoryList.CaretIndex == MemoryList.Text.Length ? (char)0 : MemoryList.Text[MemoryList.CaretIndex];
+            char curentChar = MemoryList.CaretIndex == viewModel.Content.Length ? (char)0 : viewModel.Content[MemoryList.CaretIndex];
             if (curentChar == '\u2610')
             {
-                MemoryList.Text = MemoryList.Text.Substring(0, MemoryList.CaretIndex) + "\u2611" + MemoryList.Text.Substring(MemoryList.CaretIndex + 1);
+                viewModel.Content = viewModel.Content.Substring(0, MemoryList.CaretIndex) + "\u2611" + viewModel.Content.Substring(MemoryList.CaretIndex + 1);
             }
             else if (curentChar == '\u2611')
             {
-                MemoryList.Text = MemoryList.Text.Substring(0, MemoryList.CaretIndex) + "\u2610" + MemoryList.Text.Substring(MemoryList.CaretIndex + 1);
+                viewModel.Content = viewModel.Content.Substring(0, MemoryList.CaretIndex) + "\u2610" + viewModel.Content.Substring(MemoryList.CaretIndex + 1);
             }
         }
 
