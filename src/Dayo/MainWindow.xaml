@@ -8,9 +8,9 @@
         Title="Dayo" Height="355" Width="280" Topmost="True" WindowStyle="None" ResizeMode="NoResize" Top="0" Left="1640" FontFamily="Global Sans Serif">
     <Grid>
         <Rectangle x:Name="DraggableRectangle" Height="25" VerticalAlignment="Top" PreviewMouseDown="DraggableRectangle_MouseDown" Fill="White"></Rectangle>
-        <Button x:Name="AddCheckbox" Content="&#x2610;" Width="24" HorizontalAlignment="Left" Margin="0,0,0,330" Command="{Binding CommandAddCheckBox}" CommandParameter="{Binding ElementName=MemoryList, Path=Text}"/>
-        <TextBox x:Name="Title" Height="25" Width="150" VerticalAlignment="Top" FontSize="25" Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-        <Button x:Name="Close" Content="x" Height="25" Width="25" VerticalAlignment="Top" HorizontalAlignment="Right" Command="{Binding CommandClose}"/>
-        <TextBox x:Name="MemoryList" Margin="0, 25, 0, 0" FontSize="24" AcceptsReturn="True" TextWrapping="Wrap" PreviewMouseRightButtonDown="MemoryList_MouseDown" Text="{Binding Content, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <Button x:Name="AddCheckbox" Content="&#x2610;" Width="24" HorizontalAlignment="Left" Margin="0,0,0,330" Command="{Binding Path=CommandAddCheckBox}" CommandParameter="{Binding ElementName=MemoryList, Path=Text}"/>
+        <TextBox x:Name="Title" Height="25" Width="150" VerticalAlignment="Top" FontSize="25" Text="{Binding Path=Title, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <Button x:Name="Close" Content="x" Height="25" Width="25" VerticalAlignment="Top" HorizontalAlignment="Right" Command="{Binding Path=CommandClose}" CommandParameter="{Binding ElementName=MemoryList, Path=Text}"/>
+        <TextBox x:Name="MemoryList" Margin="0, 25, 0, 0" FontSize="24" AcceptsReturn="True" TextWrapping="Wrap" PreviewMouseRightButtonDown="MemoryList_MouseDown" Text="{Binding Path=Content, UpdateSourceTrigger=PropertyChanged}"></TextBox>
     </Grid>
 </Window>

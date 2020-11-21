@@ -76,14 +76,18 @@ namespace Dayo
         {
             get
             {
-                if (commandClose == null)
-                    commandClose = new CloseCommand();
-                return commandClose;
+                return commandClose ?? (commandClose = new RelayCommand(
+                    x =>
+                    {
+                        StoreMemoryList(this.Content);
+                        System.Windows.Application.Current.Shutdown();
+                    }));
             }
-            set
-            {
-                commandClose = value;
-            }
+        }
+
+        private void StoreMemoryList(string content)
+        {
+            System.IO.File.WriteAllText("DayoStore.txt", content);
         }
     }
 }
