@@ -31,4 +31,8 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="SimpleInjector" Version="5.1.0" />
+  </ItemGroup>
+
 </Project>
