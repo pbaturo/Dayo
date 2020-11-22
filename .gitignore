@@ -12,3 +12,4 @@
 /src/Dayo.Package/Dayo.Package/obj
 /tests/Dayo.Tests/bin/Release/netcoreapp3.1
 /tests/Dayo.Tests/bin/Debug/net5.0
+/.vscode
