@@ -20,44 +20,47 @@ namespace Dayo
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    partial class MainWindow : Window
     {
-        private readonly MainWindowViewModel viewModel;
+        private readonly MainWindowViewModel mwViewModel;
         private readonly Store store;
         System.Windows.Threading.DispatcherTimer dispatcherTimer;
 
-        public MainWindow()
+        public MainWindow(MainWindowViewModel mwViewModel, Store store)
         {
             InitializeComponent();
-            viewModel = new MainWindowViewModel();
-            store = new Store();
-            DataContext = viewModel;
-            viewModel.Content = store.ReadMemoryList();
+            this.mwViewModel = mwViewModel;
+            this.store = store;
+            DataContext = this.mwViewModel;
+            
+            mwViewModel.Content = store.ReadMemoryList();
 
             dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
             dispatcherTimer.Tick += dispatcherTimer_Tick;
             dispatcherTimer.Interval = new TimeSpan(0, 0, 30);
             dispatcherTimer.Start();
+
+            
         }
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
-            store.StoreMemoryList(viewModel.Content);
+            store.StoreMemoryList(mwViewModel.Content);
         }
 
         private void MemoryList_MouseDown(object sender, MouseButtonEventArgs e)
         {  
-            if (viewModel.Content == "")
+            if (mwViewModel.Content == "")
             {
                 return;
             }
-            char curentChar = MemoryList.CaretIndex == viewModel.Content.Length ? (char)0 : viewModel.Content[MemoryList.CaretIndex];
+            char curentChar = MemoryList.CaretIndex == mwViewModel.Content.Length ? (char)0 : mwViewModel.Content[MemoryList.CaretIndex];
             if (curentChar == '\u2610')
             {
-                viewModel.Content = viewModel.Content.Substring(0, MemoryList.CaretIndex) + "\u2611" + viewModel.Content.Substring(MemoryList.CaretIndex + 1);
+                mwViewModel.Content = mwViewModel.Content.Substring(0, MemoryList.CaretIndex) + "\u2611" + mwViewModel.Content.Substring(MemoryList.CaretIndex + 1);
             }
             else if (curentChar == '\u2611')
             {
-                viewModel.Content = viewModel.Content.Substring(0, MemoryList.CaretIndex) + "\u2610" + viewModel.Content.Substring(MemoryList.CaretIndex + 1);
+                mwViewModel.Content = mwViewModel.Content.Substring(0, MemoryList.CaretIndex) + "\u2610" + mwViewModel.Content.Substring(MemoryList.CaretIndex + 1);
             }
         }
 

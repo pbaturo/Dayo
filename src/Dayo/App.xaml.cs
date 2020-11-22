@@ -15,8 +15,10 @@ namespace Dayo
     {
         private void Application_Startup(object sender, StartupEventArgs e)
 		{
-			MainWindow wnd = new MainWindow();
-			wnd.Show();
+            Store store = new Store();
+            MainWindowViewModel mainWindowViewModel = new MainWindowViewModel(store);
+			MainWindow mainWindow = new MainWindow(mainWindowViewModel, store);
+			mainWindow.Show();
 		}
     }
 }

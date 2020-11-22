@@ -7,10 +7,12 @@ using System.Windows.Input;
 
 namespace Dayo
 {
-    class MainWindowViewModel : INotifyPropertyChanged 
+    public class MainWindowViewModel : INotifyPropertyChanged 
     {
-        public MainWindowViewModel()
+        private readonly Store store;
+        public MainWindowViewModel(Store store)
         {
+            this.store = store;
             note = new Note();
         }
 
@@ -79,15 +81,10 @@ namespace Dayo
                 return commandClose ?? (commandClose = new RelayCommand(
                     x =>
                     {
-                        StoreMemoryList(this.Content);
+                        store.StoreMemoryList(this.Content);
                         System.Windows.Application.Current.Shutdown();
                     }));
             }
-        }
-
-        private void StoreMemoryList(string content)
-        {
-            System.IO.File.WriteAllText("DayoStore.txt", content);
         }
     }
 }
