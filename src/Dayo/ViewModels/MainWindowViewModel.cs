@@ -70,7 +70,18 @@ namespace Dayo
 
         public void AddCheckBox(string content)
         {
-            this.Content = content.Insert(0, "\u2610");
+            content ??= string.Empty;
+            var index = CaretIndex;
+            if (index < 0)
+            {
+                index = 0;
+            }
+            else if (index > content.Length)
+            {
+                index = content.Length;
+            }
+
+            this.Content = content.Insert(index, "\u2610");
         }
 
         private ICommand commandClose;
